@@ -5,7 +5,7 @@
 // MongoDB
 // export const ormconfig: DataSourceOptions = {
 //   type: "mongodb",
-//   url: "mongodb+srv://skippertech:skipper123Tech@nodejs.79xtnsg.mongodb.net/medium-clone?retryWrites=true&w=majority",
+//   url: process.env.DATABASE_URL,
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
 //   synchronize: true, 
@@ -23,7 +23,7 @@
 
 // export const ormconfig: DataSourceOptions = {
 //   type: "postgres",
-//   url: "postgresql://medium-clone_owner:npg_VBqhNiM3bZ9p@ep-shrill-truth-a5cd11cw-pooler.us-east-2.aws.neon.tech/medium-clone?sslmode=require",
+//   url: POStGRES_DATABASE_URL
 //   synchronize: true,
 //   logging: true,
 //   entities: ['src/entity/*.ts'],
