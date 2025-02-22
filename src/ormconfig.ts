@@ -36,18 +36,41 @@
 
 
 
+// online postgress
+// import { DataSource, DataSourceOptions } from 'typeorm';
+// import * as dotenv from 'dotenv';
+// dotenv.config({ path: `.env.${process.env.NODE_ENV || 'development'}` });
 
+// export const ormconfig: DataSourceOptions = {
+//   type: 'postgres',
+//   url: process.env.DATABASE_URL,
+//   synchronize: process.env.NODE_ENV !== 'production', 
+//   logging: process.env.NODE_ENV !== 'production',
+//   entities: ['src/entity/*.ts'],
+//   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false, 
+// };
+
+// export const AppDataSource = new DataSource(ormconfig);
+
+
+
+
+// Localhost postgress
 import { DataSource, DataSourceOptions } from 'typeorm';
 import * as dotenv from 'dotenv';
-dotenv.config({ path: `.env.${process.env.NODE_ENV || 'development'}` });
+
+dotenv.config();
 
 export const ormconfig: DataSourceOptions = {
-  type: 'postgres',
-  url: process.env.DATABASE_URL,
-  synchronize: process.env.NODE_ENV !== 'production', 
-  logging: process.env.NODE_ENV !== 'production',
+  type: "postgres",
+  host: "localhost",
+  port: 5432,
+  username: "postgres",
+  password: "skipper",
+  // database: "Medium-Clone",
+  synchronize: true, // Automatically sync schema (disable in production)
+  logging: true,
   entities: ['src/entity/*.ts'],
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false, 
 };
 
 export const AppDataSource = new DataSource(ormconfig);
