@@ -11,9 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TagsController = void 0;
 const common_1 = require("@nestjs/common");
+const tags_service_1 = require("./tags.service");
 let TagsController = class TagsController {
-    findAll() {
-        return ['dragon', 'coffee'];
+    constructor(tagsService) {
+        this.tagsService = tagsService;
+    }
+    async findAll() {
+        const tags = await this.tagsService.findAll();
+        return {
+            tags: tags.map((tag) => tag.name),
+        };
     }
 };
 exports.TagsController = TagsController;
@@ -21,9 +28,10 @@ __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], TagsController.prototype, "findAll", null);
 exports.TagsController = TagsController = __decorate([
-    (0, common_1.Controller)('tags')
+    (0, common_1.Controller)('tags'),
+    __metadata("design:paramtypes", [tags_service_1.TagsService])
 ], TagsController);
 //# sourceMappingURL=tags.controller.js.map

@@ -104,3 +104,6 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 
 #Dependency
 npm install pg --save
+
+NOTE: Command to run migration
+npx typeorm migration:create ./db/migrations/PostRefactoring

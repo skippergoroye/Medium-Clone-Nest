@@ -10,17 +10,16 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const tags_controller_1 = require("./tags/tags.controller");
 const tags_module_1 = require("./tags/tags.module");
 const typeorm_1 = require("@nestjs/typeorm");
-const ormconfig_1 = require("./ormconfig");
+const data_source_1 = require("../db/data-source");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forRoot(ormconfig_1.ormconfig), tags_module_1.TagsModule],
-        controllers: [app_controller_1.AppController, tags_controller_1.TagsController],
+        imports: [typeorm_1.TypeOrmModule.forRoot(data_source_1.dataSourceOptions), tags_module_1.TagsModule],
+        controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
 ], AppModule);
