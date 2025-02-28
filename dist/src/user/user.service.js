@@ -9,8 +9,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
 let UserService = class UserService {
-    async createUser() {
-        return 'Create User from service';
+    async createUser(createUserDto) {
+        return createUserDto;
     }
 };
 exports.UserService = UserService;

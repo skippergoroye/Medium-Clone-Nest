@@ -7,13 +7,23 @@ export const dataSourceOptions: DataSourceOptions = {
   port: 5432,
   username: 'postgres',
   password: 'skipper',
-  // database: "PostgreSQL 17",
-  // synchronize: true,
-  // logging: true,
-  entities: ['src/entity/*.ts'],
-  //   migrations: ["src/migrations/**/*.ts"],
-  migrations: [resolve(__dirname, 'migrations/*{.ts,.js}')],
+  // database: 'your_database_name', // Ensure you set your database name
+  synchronize: false, // Always false when using migrations
+  logging: false, // Set to true if you want SQL logs
+  entities: ['src/user/*.entity.ts'], // Adjusted path
+  migrations: [resolve(__dirname, '../migrations/*.{ts,js}')], // Adjusted path
 };
 
-const dataSource = new DataSource(dataSourceOptions);
-export default dataSource;
+// Initialize the DataSource
+const AppDataSource = new DataSource(dataSourceOptions);
+
+AppDataSource.initialize()
+  .then(() => {
+    console.log('Data Source has been initialized!');
+  })
+  .catch((err) => {
+    console.error('Error during Data Source initialization:', err);
+  });
+
+export default AppDataSource;
+

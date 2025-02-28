@@ -9,9 +9,18 @@ exports.dataSourceOptions = {
     port: 5432,
     username: 'postgres',
     password: 'skipper',
-    entities: ['src/entity/*.ts'],
-    migrations: [(0, path_1.resolve)(__dirname, 'migrations/*{.ts,.js}')],
+    synchronize: false,
+    logging: false,
+    entities: [(0, path_1.resolve)(__dirname, '../entity/*.{ts,js}')],
+    migrations: [(0, path_1.resolve)(__dirname, '../migrations/*.{ts,js}')],
 };
-const dataSource = new typeorm_1.DataSource(exports.dataSourceOptions);
-exports.default = dataSource;
+const AppDataSource = new typeorm_1.DataSource(exports.dataSourceOptions);
+AppDataSource.initialize()
+    .then(() => {
+    console.log('Data Source has been initialized!');
+})
+    .catch((err) => {
+    console.error('Error during Data Source initialization:', err);
+});
+exports.default = AppDataSource;
 //# sourceMappingURL=data-source.js.map

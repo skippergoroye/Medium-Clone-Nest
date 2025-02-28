@@ -1,3 +1,4 @@
+import { CreateUserDto } from "./dto/createUser.dto";
 export declare class UserService {
-    createUser(): Promise<string>;
+    createUser(createUserDto: CreateUserDto): Promise<CreateUserDto>;
 }

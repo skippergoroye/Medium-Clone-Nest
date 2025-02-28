@@ -104,6 +104,13 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 
 #Dependency
 npm install pg --save
+npm i --save-dev @types/jsonwebtoken  
+npm i jsonwebtoken 
 
-NOTE: Command to run migration
+NOTE: Command to run migration 
+1. Generate empty migration
 npx typeorm migration:create ./db/migrations/PostRefactoring
+2. Generate real migration
+npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate -d ./db/data-source.ts ./db/migrations/PostRefactoring
+
+
