@@ -13,8 +13,10 @@ export const dataSourceOptions: DataSourceOptions = {
   // database: 'your_database_name', // Ensure you set your database name
   synchronize: false, // Always false when using migrations
   logging: false, 
-  entities: [UserEntity, TagEntity], 
-  migrations: [resolve(__dirname, '../migrations/*.{ts,js}')], 
+  // entities: [UserEntity, TagEntity], 
+  // migrations: [resolve(__dirname, '../migrations/*.{ts,js}')], 
+  entities: ['dist/**/*.entity.js'],
+  migrations: ['dist/db/migrations/*.js'],  
 };
 
 

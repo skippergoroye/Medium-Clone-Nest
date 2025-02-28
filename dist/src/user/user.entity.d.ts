@@ -4,5 +4,10 @@ export declare class UserEntity {
     bio: string;
     image: string;
     password: string;
+    profileImg: string;
+    profileImgTwo: string;
+    profileImgTwoThre: string;
+    profileImgTwoFour: string;
+    profileImgTwoFive: string;
     hashPassword(): Promise<void>;
 }

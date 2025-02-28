@@ -112,5 +112,21 @@ NOTE: Command to run migration
 npx typeorm migration:create ./db/migrations/PostRefactoring
 2. Generate real migration
 npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate -d ./db/data-source.ts ./db/migrations/PostRefactoring
+5️⃣ Verify If the users Table you just created  Exists
+npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:log -d ./db/data-source.ts
+----------------------------------------------------------------
+-- Schema synchronization will execute following sql queries (1):
+----------------------------------------------------------------
+ALTER TABLE "users" ADD "profileImgTwoThre" character varying NOT NULL DEFAULT '';
+
+
+
+
+New Command Latest
+1.Generate migration 
+npm run migration:generate -- db/migrations/NewMigration
+
+2.Rum migration 
+npm run migration:run
 
 

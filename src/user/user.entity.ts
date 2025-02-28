@@ -20,8 +20,31 @@ export class UserEntity {
   password: string;
 
 
-  @Column()
-  passwordtwo: string;
+  @Column({ default: '' })
+  profileImg: string;
+
+
+
+  @Column({ default: '' })
+  profileImgTwo: string;
+
+
+
+  @Column({ default: '' })
+  profileImgTwoThre: string;
+
+
+
+  @Column({ default: '' })
+  profileImgTwoFour: string;
+
+
+
+
+  @Column({ default: '' })
+  profileImgTwoFive: string;
+
+
 
   @BeforeInsert()
   async hashPassword() {
