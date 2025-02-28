@@ -62,6 +62,10 @@ __decorate([
     __metadata("design:type", String)
 ], UserEntity.prototype, "profileImgTwoFive", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ default: '' }),
+    __metadata("design:type", String)
+], UserEntity.prototype, "profileImgTwoSix", void 0);
+__decorate([
     (0, typeorm_1.BeforeInsert)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),

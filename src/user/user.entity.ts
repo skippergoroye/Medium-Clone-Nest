@@ -44,6 +44,9 @@ export class UserEntity {
   @Column({ default: '' })
   profileImgTwoFive: string;
 
+  @Column({ default: '' })
+  profileImgTwoSix: string;
+
 
 
   @BeforeInsert()
