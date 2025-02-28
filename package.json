@@ -20,10 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "db:drop": "npm typeorm schema:drop",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config src/ormconfig.ts",
-  
     "db:create": "npx typeorm migration:generate src/migrations/PostRefactoring -d src/data-source.ts",
-
-
     "db:migrate":  "npm run typeorm migration:run"
   },
   "dependencies": {

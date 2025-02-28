@@ -13,12 +13,13 @@ const app_service_1 = require("./app.service");
 const tags_module_1 = require("./tags/tags.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const data_source_1 = require("../db/data-source");
+const user_module_1 = require("./user/user.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forRoot(data_source_1.dataSourceOptions), tags_module_1.TagsModule],
+        imports: [typeorm_1.TypeOrmModule.forRoot(data_source_1.dataSourceOptions), tags_module_1.TagsModule, user_module_1.UserModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
