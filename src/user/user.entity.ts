@@ -19,6 +19,10 @@ export class UserEntity {
   @Column()
   password: string;
 
+
+  @Column()
+  passwordtwo: string;
+
   @BeforeInsert()
   async hashPassword() {
     this.password = await bcrypt.hash(this.password, 10);

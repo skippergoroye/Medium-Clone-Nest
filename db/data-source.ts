@@ -1,5 +1,8 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { resolve } from 'path';
+import { UserEntity } from '../src/user/user.entity';
+import { TagEntity } from '../src/tags/tags.entity';
+
 
 export const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',
@@ -9,21 +12,13 @@ export const dataSourceOptions: DataSourceOptions = {
   password: 'skipper',
   // database: 'your_database_name', // Ensure you set your database name
   synchronize: false, // Always false when using migrations
-  logging: false, // Set to true if you want SQL logs
-  entities: ['src/user/*.entity.ts'], // Adjusted path
-  migrations: [resolve(__dirname, '../migrations/*.{ts,js}')], // Adjusted path
+  logging: false, 
+  entities: [UserEntity, TagEntity], 
+  migrations: [resolve(__dirname, '../migrations/*.{ts,js}')], 
 };
 
-// Initialize the DataSource
-const AppDataSource = new DataSource(dataSourceOptions);
 
-AppDataSource.initialize()
-  .then(() => {
-    console.log('Data Source has been initialized!');
-  })
-  .catch((err) => {
-    console.error('Error during Data Source initialization:', err);
-  });
+const AppDataSource = new DataSource(dataSourceOptions);
 
 export default AppDataSource;
 
