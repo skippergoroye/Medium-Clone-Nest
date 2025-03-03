@@ -10,6 +10,9 @@ export class UserEntity {
   @Column()
   email: string;
 
+  @Column()
+  username: string;
+
   @Column({ default: '' })
   bio: string;
 
@@ -22,31 +25,6 @@ export class UserEntity {
 
   @Column({ default: '' })
   profileImg: string;
-
-
-
-  @Column({ default: '' })
-  profileImgTwo: string;
-
-
-
-  @Column({ default: '' })
-  profileImgTwoThre: string;
-
-
-
-  @Column({ default: '' })
-  profileImgTwoFour: string;
-
-
-
-
-  @Column({ default: '' })
-  profileImgTwoFive: string;
-
-  @Column({ default: '' })
-  profileImgTwoSix: string;
-
 
 
   @BeforeInsert()

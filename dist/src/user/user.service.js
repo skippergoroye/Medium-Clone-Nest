@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const user_entity_1 = require("./user.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
+const jsonwebtoken_1 = require("jsonwebtoken");
+const config_1 = require("../config");
 let UserService = class UserService {
     constructor(userRepository) {
         this.userRepository = userRepository;
@@ -25,6 +27,21 @@ let UserService = class UserService {
         const newUser = new user_entity_1.UserEntity();
         Object.assign(newUser, createUserDto);
         return await this.userRepository.save(newUser);
+    }
+    generateJWT(user) {
+        return (0, jsonwebtoken_1.sign)({
+            id: user.id,
+            username: user.username,
+            email: user.email,
+        }, config_1.JWT_SECRET);
+    }
+    buildUserResponse(user) {
+        return {
+            user: {
+                ...user,
+                token: this.generateJWT(user),
+            }
+        };
     }
 };
 exports.UserService = UserService;

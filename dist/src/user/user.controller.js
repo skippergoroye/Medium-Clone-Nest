@@ -21,7 +21,8 @@ let UserController = class UserController {
         this.userService = userService;
     }
     async CreateUser(creatUserDto) {
-        return this.userService.createUser(creatUserDto);
+        const user = await this.userService.createUser(creatUserDto);
+        return this.userService.buildUserResponse(user);
     }
 };
 exports.UserController = UserController;

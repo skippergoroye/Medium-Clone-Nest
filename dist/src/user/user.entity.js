@@ -30,6 +30,10 @@ __decorate([
     __metadata("design:type", String)
 ], UserEntity.prototype, "email", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], UserEntity.prototype, "username", void 0);
+__decorate([
     (0, typeorm_1.Column)({ default: '' }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "bio", void 0);
@@ -45,26 +49,6 @@ __decorate([
     (0, typeorm_1.Column)({ default: '' }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "profileImg", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ default: '' }),
-    __metadata("design:type", String)
-], UserEntity.prototype, "profileImgTwo", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ default: '' }),
-    __metadata("design:type", String)
-], UserEntity.prototype, "profileImgTwoThre", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ default: '' }),
-    __metadata("design:type", String)
-], UserEntity.prototype, "profileImgTwoFour", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ default: '' }),
-    __metadata("design:type", String)
-], UserEntity.prototype, "profileImgTwoFive", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ default: '' }),
-    __metadata("design:type", String)
-], UserEntity.prototype, "profileImgTwoSix", void 0);
 __decorate([
     (0, typeorm_1.BeforeInsert)(),
     __metadata("design:type", Function),

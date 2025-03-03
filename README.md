@@ -130,3 +130,8 @@ npm run migration:generate -- db/migrations/NewMigration
 npm run migration:run
 
 
+3. Drop Schema
+npm run typeorm schema:drop
+
+
+
