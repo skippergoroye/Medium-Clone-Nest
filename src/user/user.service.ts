@@ -5,6 +5,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { sign } from "jsonwebtoken";
 import { JWT_SECRET } from "src/config";
+import { UserResponseInterface } from "./types/userResponse.interface";
 
 @Injectable()
 export class UserService {
@@ -33,7 +34,7 @@ export class UserService {
 
 
 
-    buildUserResponse(user: UserEntity): any { 
+    buildUserResponse(user: UserEntity): UserResponseInterface { 
         return {
             user: {
                 ...user,
