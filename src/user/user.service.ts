@@ -6,6 +6,8 @@ import { Repository } from 'typeorm';
 import { sign } from 'jsonwebtoken';
 import { JWT_SECRET } from 'src/config';
 import { UserResponseInterface } from './types/userResponse.interface';
+import { LoginUserDto } from './dto/loginUser.dto';
+import { compare } from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -33,6 +35,37 @@ export class UserService {
     Object.assign(newUser, createUserDto);
     // console.log("newUser", newUser)
     return await this.userRepository.save(newUser);
+  }
+
+  async login(loginUserDto: LoginUserDto): Promise<UserEntity> {
+    const user = await this.userRepository.findOne({
+      where: {
+        email: loginUserDto.email,
+      },
+      select: ["id", "username", "email", "bio", "image", "password"]
+    });
+
+
+
+    if (!user) {
+      throw new HttpException(
+        'User not found',
+        HttpStatus.UNPROCESSABLE_ENTITY,
+      );
+    }
+
+
+    const isPasswordCorrect = await compare(loginUserDto.password, user.password);
+
+    if (!isPasswordCorrect) {
+      throw new HttpException(
+        'Invalid password',
+        HttpStatus.UNPROCESSABLE_ENTITY,
+      );
+    }
+    delete user.password;
+
+    return user;
   }
 
   generateJWT(user: UserEntity): string {

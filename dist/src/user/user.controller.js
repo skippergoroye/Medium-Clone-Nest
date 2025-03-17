@@ -24,6 +24,10 @@ let UserController = class UserController {
         const user = await this.userService.createUser(creatUserDto);
         return this.userService.buildUserResponse(user);
     }
+    async login(loginDto) {
+        const user = await this.userService.login(loginDto);
+        return this.userService.buildUserResponse(user);
+    }
 };
 exports.UserController = UserController;
 __decorate([
@@ -33,6 +37,14 @@ __decorate([
     __metadata("design:paramtypes", [createUser_dto_1.CreateUserDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "CreateUser", null);
+__decorate([
+    (0, common_1.Post)('login'),
+    (0, common_1.UsePipes)(new common_1.ValidationPipe()),
+    __param(0, (0, common_1.Body)('user')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "login", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('users'),
     (0, common_1.UsePipes)(new common_1.ValidationPipe()),

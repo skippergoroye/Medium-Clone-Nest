@@ -1,9 +1,14 @@
-import { Body, Controller, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/createUser.dto';
 import { UserEntity } from './user.entity';
 import { UserResponseInterface } from './types/userResponse.interface';
-
 
 // @Controller('user')
 // export class UserController {
@@ -14,19 +19,24 @@ import { UserResponseInterface } from './types/userResponse.interface';
 
 // }
 
-
-
-
-
 @Controller('users')
 @UsePipes(new ValidationPipe())
 export class UserController {
-    constructor(private readonly userService: UserService) { }
-    @Post()
-    async CreateUser(@Body('user') creatUserDto: CreateUserDto): Promise<UserResponseInterface> {
-        // console.log("createUser", creatUserDto);
-        const user = await this.userService.createUser(creatUserDto);
-        return this.userService.buildUserResponse(user)
-    }
+  constructor(private readonly userService: UserService) {}
+  @Post()
+  async CreateUser(
+    @Body('user') creatUserDto: CreateUserDto,
+  ): Promise<UserResponseInterface> {
+    // console.log("createUser", creatUserDto);
+    const user = await this.userService.createUser(creatUserDto);
+    return this.userService.buildUserResponse(user);
+  }
 
+  @Post('login')
+  @UsePipes(new ValidationPipe())
+  async login(@Body('user') loginDto: any): Promise<UserResponseInterface> {
+ 
+    const user = await this.userService.login(loginDto);
+    return this.userService.buildUserResponse(user);
+  }
 }

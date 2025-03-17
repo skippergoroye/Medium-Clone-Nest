@@ -19,6 +19,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const jsonwebtoken_1 = require("jsonwebtoken");
 const config_1 = require("../config");
+const bcrypt_1 = require("bcrypt");
 let UserService = class UserService {
     constructor(userRepository) {
         this.userRepository = userRepository;
@@ -36,6 +37,23 @@ let UserService = class UserService {
         const newUser = new user_entity_1.UserEntity();
         Object.assign(newUser, createUserDto);
         return await this.userRepository.save(newUser);
+    }
+    async login(loginUserDto) {
+        const user = await this.userRepository.findOne({
+            where: {
+                email: loginUserDto.email,
+            },
+            select: ["id", "username", "email", "bio", "image", "password"]
+        });
+        if (!user) {
+            throw new common_1.HttpException('User not found', common_1.HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+        const isPasswordCorrect = await (0, bcrypt_1.compare)(loginUserDto.password, user.password);
+        if (!isPasswordCorrect) {
+            throw new common_1.HttpException('Invalid password', common_1.HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+        delete user.password;
+        return user;
     }
     generateJWT(user) {
         return (0, jsonwebtoken_1.sign)({
