@@ -24,6 +24,15 @@ let UserService = class UserService {
         this.userRepository = userRepository;
     }
     async createUser(createUserDto) {
+        const userByEmail = await this.userRepository.findOne({
+            where: { email: createUserDto.email },
+        });
+        const userByUsername = await this.userRepository.findOne({
+            where: { username: createUserDto.username },
+        });
+        if (userByEmail || userByUsername) {
+            throw new common_1.HttpException('Email or username already exists', common_1.HttpStatus.UNPROCESSABLE_ENTITY);
+        }
         const newUser = new user_entity_1.UserEntity();
         Object.assign(newUser, createUserDto);
         return await this.userRepository.save(newUser);
@@ -40,7 +49,7 @@ let UserService = class UserService {
             user: {
                 ...user,
                 token: this.generateJWT(user),
-            }
+            },
         };
     }
 };

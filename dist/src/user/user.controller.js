@@ -35,6 +35,7 @@ __decorate([
 ], UserController.prototype, "CreateUser", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('users'),
+    (0, common_1.UsePipes)(new common_1.ValidationPipe()),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map
