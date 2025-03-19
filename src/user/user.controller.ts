@@ -13,6 +13,7 @@ import { UserEntity } from './user.entity';
 import { UserResponseInterface } from './types/userResponse.interface';
 import { Request } from 'express';
 import { ExpressRequest } from 'src/types/expressRequest.interface';
+import { User } from './decorator/user.decorator';
 
 // @Controller('user')
 // export class UserController {
@@ -39,16 +40,16 @@ export class UserController {
   @Post('login')
   @UsePipes(new ValidationPipe())
   async login(@Body('user') loginDto: any): Promise<UserResponseInterface> {
- 
     const user = await this.userService.login(loginDto);
     return this.userService.buildUserResponse(user);
   }
 
-
-
   @Get('')
-  async currentUser(@Req() request: ExpressRequest): Promise<UserResponseInterface> {
-    console.log("request", request.user);
-    return this.userService.buildUserResponse(request.user);
+  async currentUser(
+    @Req() request: ExpressRequest,
+    @User("id") user: UserEntity ,
+  ): Promise<UserResponseInterface> {
+    console.log('user', user);
+    return this.userService.buildUserResponse( user);
   }
 }
