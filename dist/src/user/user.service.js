@@ -38,6 +38,9 @@ let UserService = class UserService {
         Object.assign(newUser, createUserDto);
         return await this.userRepository.save(newUser);
     }
+    async findUserById(id) {
+        return this.userRepository.findOne({ where: { id } });
+    }
     async login(loginUserDto) {
         const user = await this.userRepository.findOne({
             where: {

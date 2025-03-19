@@ -28,6 +28,10 @@ let UserController = class UserController {
         const user = await this.userService.login(loginDto);
         return this.userService.buildUserResponse(user);
     }
+    async currentUser(request) {
+        console.log("request", request.user);
+        return this.userService.buildUserResponse(request.user);
+    }
 };
 exports.UserController = UserController;
 __decorate([
@@ -45,6 +49,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "login", null);
+__decorate([
+    (0, common_1.Get)(''),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "currentUser", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('users'),
     (0, common_1.UsePipes)(new common_1.ValidationPipe()),

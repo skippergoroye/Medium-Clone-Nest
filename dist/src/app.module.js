@@ -14,7 +14,14 @@ const tags_module_1 = require("./tags/tags.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const data_source_1 = require("../db/data-source");
 const user_module_1 = require("./user/user.module");
+const auth_middleware_1 = require("./user/middlewares/auth.middleware");
 let AppModule = class AppModule {
+    configure(consumer) {
+        consumer.apply(auth_middleware_1.AuthMiddleware).forRoutes({
+            path: '*',
+            method: common_1.RequestMethod.ALL
+        });
+    }
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([

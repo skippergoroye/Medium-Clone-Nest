@@ -7,6 +7,7 @@ export declare class UserService {
     private readonly userRepository;
     constructor(userRepository: Repository<UserEntity>);
     createUser(createUserDto: CreateUserDto): Promise<UserEntity>;
+    findUserById(id: number): Promise<UserEntity>;
     login(loginUserDto: LoginUserDto): Promise<UserEntity>;
     generateJWT(user: UserEntity): string;
     buildUserResponse(user: UserEntity): UserResponseInterface;
