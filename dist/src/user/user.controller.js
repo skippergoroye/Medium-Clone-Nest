@@ -19,6 +19,7 @@ const createUser_dto_1 = require("./dto/createUser.dto");
 const user_entity_1 = require("./user.entity");
 const user_decorator_1 = require("./decorator/user.decorator");
 const auth_guard_1 = require("./guards/auth.guard");
+const updateUser_dto_1 = require("./dto/updateUser.dto");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -33,6 +34,10 @@ let UserController = class UserController {
     }
     async currentUser(request, user) {
         console.log('user', user);
+        return this.userService.buildUserResponse(user);
+    }
+    async updateCurrentUser(currentUserId, updateUserDto) {
+        const user = await this.userService.updateUser(currentUserId, updateUserDto);
         return this.userService.buildUserResponse(user);
     }
 };
@@ -61,6 +66,15 @@ __decorate([
     __metadata("design:paramtypes", [Object, user_entity_1.UserEntity]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "currentUser", null);
+__decorate([
+    (0, common_1.Put)(''),
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
+    __param(0, (0, user_decorator_1.User)('id')),
+    __param(1, (0, common_1.Body)('user')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, updateUser_dto_1.UpdateUserDto]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "updateCurrentUser", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('users'),
     (0, common_1.UsePipes)(new common_1.ValidationPipe()),

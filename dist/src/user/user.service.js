@@ -58,6 +58,11 @@ let UserService = class UserService {
         delete user.password;
         return user;
     }
+    async updateUser(userId, updateUserDto) {
+        const user = await this.findUserById(userId);
+        Object.assign(user, updateUserDto);
+        return await this.userRepository.save(user);
+    }
     generateJWT(user) {
         return (0, jsonwebtoken_1.sign)({
             id: user.id,
