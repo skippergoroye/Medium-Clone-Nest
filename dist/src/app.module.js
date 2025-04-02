@@ -15,6 +15,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const data_source_1 = require("../db/data-source");
 const user_module_1 = require("./user/user.module");
 const auth_middleware_1 = require("./user/middlewares/auth.middleware");
+const article_module_1 = require("./article/article.module");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer.apply(auth_middleware_1.AuthMiddleware).forRoutes({
@@ -26,7 +27,7 @@ let AppModule = class AppModule {
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forRoot(data_source_1.dataSourceOptions), tags_module_1.TagsModule, user_module_1.UserModule],
+        imports: [typeorm_1.TypeOrmModule.forRoot(data_source_1.dataSourceOptions), tags_module_1.TagsModule, user_module_1.UserModule, article_module_1.ArticleModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
