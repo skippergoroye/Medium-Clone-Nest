@@ -1,3 +1,8 @@
+import { CreateArticleDto } from './dto/createArticle.dto';
+import { ArticleEntity } from './article.entity';
+import { UserEntity } from 'src/user/user.entity';
 export declare class ArticleService {
-    createArticle(): Promise<string>;
+    private readonly articleRepository;
+    constructor(articleRepository: any);
+    createArticle(currentUser: UserEntity, createArticleDto: CreateArticleDto): Promise<ArticleEntity>;
 }

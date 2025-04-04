@@ -1,3 +1,4 @@
+import { UserEntity } from 'src/user/user.entity';
 export declare class ArticleEntity {
     id: number;
     slug: string;
@@ -9,4 +10,5 @@ export declare class ArticleEntity {
     tagList: string[];
     favoriteCount: number;
     updateTimeStamp(): void;
+    author: UserEntity;
 }

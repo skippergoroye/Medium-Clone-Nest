@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserEntity = void 0;
 const typeorm_1 = require("typeorm");
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const article_entity_1 = require("../article/article.entity");
 let UserEntity = class UserEntity {
     async hashPassword() {
         this.password = await bcrypt_1.default.hash(this.password, 10);
@@ -55,6 +56,10 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserEntity.prototype, "hashPassword", null);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => article_entity_1.ArticleEntity, (article) => article.author),
+    __metadata("design:type", Array)
+], UserEntity.prototype, "articles", void 0);
 exports.UserEntity = UserEntity = __decorate([
     (0, typeorm_1.Entity)({ name: 'users' })
 ], UserEntity);

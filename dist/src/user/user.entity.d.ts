@@ -1,3 +1,4 @@
+import { ArticleEntity } from 'src/article/article.entity';
 export declare class UserEntity {
     id: number;
     email: string;
@@ -7,4 +8,5 @@ export declare class UserEntity {
     password: string;
     profileImg: string;
     hashPassword(): Promise<void>;
+    articles: ArticleEntity[];
 }
